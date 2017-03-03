@@ -1,33 +1,32 @@
-FROM ubuntu:14.04
+FROM ubuntu:16.04
 
-MAINTAINER Alexey Nurgaliev <atnurgaliev@gmail.com>
+MAINTAINER Frank <dapor@dapor.de>
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update && \
-    apt-get upgrade -y && \
-    apt-get install -y python python-pip python-ldap mercurial git \
-                       python-dev software-properties-common libmysqlclient-dev libpq-dev && \
-    add-apt-repository -y ppa:nginx/stable && \
-    apt-get update && \
-    apt-get install -y nginx && \
-    \
-    mkdir /kallithea && \
-    cd /kallithea && \
-    mkdir -m 0777 config repos logs && \
-    hg clone https://kallithea-scm.org/repos/kallithea -u stable && \
-    cd kallithea && \
-    rm -r .hg && \
-    pip install --upgrade pip setuptools && \
-    pip install -e . && \
-    python setup.py compile_catalog && \
-    \
-    pip install mysql-python && \
-    pip install psycopg2 && \
-    \
-    apt-get purge --auto-remove -y python-dev software-properties-common && \
-    \
-    rm /etc/nginx/sites-enabled/*
+RUN apt-get update 
+RUN    apt-get upgrade -y 
+ RUN   apt-get install -y python python-pip python-ldap mercurial git \
+                       python-dev software-properties-common libmysqlclient-dev libpq-dev 
+ RUN   add-apt-repository -y ppa:nginx/stable 
+  RUN  apt-get update 
+  RUN  apt-get install -y nginx 
+ RUN     mkdir /kallithea 
+ RUN   cd /kallithea 
+ RUN   mkdir -m 0777 config repos logs 
+ RUN   hg clone https://kallithea-scm.org/repos/kallithea -u stable 
+ RUN   cd kallithea 
+ RUN   rm -r .hg 
+ RUN   pip install --upgrade pip setuptools 
+ RUN   pip install -e . 
+  RUN  python setup.py compile_catalog 
+    
+  RUN  pip install mysql-python 
+  RUN  pip install psycopg2 
+    
+  RUN  apt-get purge --auto-remove -y python-dev software-properties-common 
+    
+  RUN  rm /etc/nginx/sites-enabled/*
 
 ADD kallithea_vhost /etc/nginx/sites-enabled/kallithea_vhost
 ADD run.sh /kallithea/run.sh
