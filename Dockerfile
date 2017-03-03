@@ -16,7 +16,6 @@ RUN    apt-get upgrade -y
  RUN   mkdir -m 0777 config repos logs 
  RUN   hg clone https://kallithea-scm.org/repos/kallithea -u stable 
  RUN   cd kallithea 
- RUN   rm -r .hg 
  RUN   pip install --upgrade pip setuptools 
  RUN   pip install -e . 
   RUN  python setup.py compile_catalog 
