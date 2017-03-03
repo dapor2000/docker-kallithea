@@ -5,16 +5,14 @@ Image contains [kallithea](https://kallithea-scm.org/) source code management sy
 
 Available tags:
 
-* [atnurgaliev/kallithea:latest](https://github.com/n-at/docker-kallithea/tree/master) - latest version from `stable` branch
-* [atnurgaliev/kallithea:0.3](https://github.com/n-at/docker-kallithea/tree/v0.3) - stable 0.3.2 version from PyPI
-* [atnurgaliev/kallithea:0.2](https://github.com/n-at/docker-kallithea/tree/v0.2) - stable 0.2 version from PyPI
+* [dapor/kallithea:latest](https://github.com/dapor2000/docker-kallithea/tree/master) - latest version from `stable` branch
 
 Usage
 -----
 
 Run a container with:
 
-    $ docker run -d -p 8085:80 atnurgaliev/kallithea
+    $ docker run -d -p 8085:80 dapor/docker-kallithea
 
 You can specify some environment variables:
 
@@ -44,4 +42,4 @@ Example of container with mounted volumes and new admin password running on port
         -e KALLITHEA_ADMIN_PASS=secret \
         -v /opt/kallithea/config:/kallithea/config \
         -v /opt/kallithea/repos:/kallithea/repos \
-        atnurgaliev/kallithea
+        dapor/docker-kallithea
